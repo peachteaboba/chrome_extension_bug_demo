@@ -24,4 +24,4 @@ Working (Macbook Pro's Native Monitor) -> https://youtu.be/tqj9rKMFkyo
 
 # Original StackOverflow Question:
 
-https://stackoverflow.com/questions/56469676/why-is-my-google-chrome-extensions-popup-ui-is-laggy-on-external-monitors-but-n?noredirect=1#comment99534078_56469676
+https://stackoverflow.com/questions/56500742/why-is-my-google-chrome-extensions-popup-ui-laggy-on-external-monitors-but-not
