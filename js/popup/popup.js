@@ -5,7 +5,6 @@ rettro.token = "";
 rettro.ajax_header = {};
 rettro.profile_settings = {};
 rettro.profile_id = '';
-rettro.user = {};
 rettro.post_init_message = '';
 rettro.events_bound = false;
 
@@ -19,73 +18,41 @@ rettro.is_dark_theme = false;
 rettro.pending_paused_update = false;
 rettro.pending_profile_name_update = false;
 
-rettro.reset_all = function () {
-    // General
-    rettro.token = "";
-    rettro.ajax_header = {};
-    rettro.profile_settings = {};
-    rettro.user = {};
-
-    // Menu
-    rettro.show_menu = false;
-    rettro.editing_profile_name = false;
-    rettro.profile_img_icons = [];
-
-    // Pending flags
-    rettro.pending_paused_update = false;
-    rettro.pending_profile_name_update = false;
-};
-
 rettro.init = function () {
-    if (rettro.token) {
-        console.log("[ init ] Login token found:", rettro.token);
-
-        const dummy_data = {
-            user: {
-                email: 'email@email.com',
-                display_name: 'dummy_user'
-            },
-            profile: {
-                is_dark_theme: false,
-                is_paused: true,
-                last_active_date: "2019-06-07T17:27:44.410Z",
-                last_paused_date: "2019-06-07T17:27:43.130Z",
-                name: 'Bug Demo Profile',
-                _id: "user_id_goes_here"
-            }
-        };
-        rettro.render_init(dummy_data);
-    }
+    const dummy_data = {
+        user: {
+            email: 'email@email.com',
+            display_name: 'dummy_user'
+        },
+        profile: {
+            is_dark_theme: false,
+            is_paused: true,
+            last_active_date: "2019-06-07T17:27:44.410Z",
+            last_paused_date: "2019-06-07T17:27:43.130Z",
+            name: 'Bug Demo Profile',
+            _id: "user_id_goes_here"
+        }
+    };
+    rettro.render_init(dummy_data);
 };
 
 rettro.render_init = function (data) {
-    console.log(data);
     rettro.profile_settings = data.profile;
     rettro.profile_id = rettro.profile_settings._id;
-    rettro.user = data.user;
 
     // Record theme settings
     rettro.is_dark_theme = rettro.profile_settings['is_dark_theme'];
-
-    // Init body scripts
-    //rettro_body.init();
 
     // Create and set toggle button programmatically
     rettro.create_toggle_button(rettro.profile_settings.is_paused, false);
 
     // Set styles
     rettro.set_dark_theme_styles();
-    // rettro.set_active_paused_styles_static();
     rettro.set_profile_styles();
 
     // Bind event handlers
     if (!rettro.events_bound) {
         rettro.set_event_handlers();
-    }
-
-    if (rettro.post_init_message && rettro.post_init_message.length > 0) {
-        rettro_helper.flash_message(rettro.post_init_message, false);
-        rettro.post_init_message = '';
     }
 };
 
@@ -181,15 +148,13 @@ rettro.set_event_handlers = function () {
     // ------------- Purge All Data -------------
     // ------------------------------------------
     $("#purge").on("click", function () {
-        if (rettro_body.total_links_count) {
-            rettro_helper.display_confirmation_box("delete_all", function (confirmed) {
-                if (confirmed) {
-                    // Actual AJAX call would go here
-                    rettro.post_init_message = "Successfully deleted all saved links";
-                    rettro.init();
-                }
-            })
-        }
+        rettro_helper.display_confirmation_box("delete_all", function (confirmed) {
+            if (confirmed) {
+                // Actual AJAX call would go here
+                rettro.post_init_message = "Successfully deleted all saved links";
+                rettro.init();
+            }
+        });
     });
 
     // ----------------------------------
@@ -290,21 +255,21 @@ rettro.set_event_handlers = function () {
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 rettro.set_dark_theme_styles = function () {
-    if (typeof rettro_theme !== "undefined") {
-        rettro_theme.init();
-    }
+    // if (typeof rettro_theme !== "undefined") {
+    //     rettro_theme.init();
+    // }
 };
 
 rettro.toggle_dark_theme = function () {
-    rettro.is_dark_theme = !rettro.is_dark_theme;
-
-    // Apply theme change
-    rettro.set_dark_theme_styles();
-
-    // Save theme change in DB
-
-    // Update title
-    rettro.set_profile_menu_title();
+    // rettro.is_dark_theme = !rettro.is_dark_theme;
+    //
+    // // Apply theme change
+    // rettro.set_dark_theme_styles();
+    //
+    // // Save theme change in DB
+    //
+    // // Update title
+    // rettro.set_profile_menu_title();
 };
 
 
@@ -316,91 +281,78 @@ rettro.toggle_dark_theme = function () {
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 rettro.render_profile_image_list = function () {
-    const dummy_data = [
-        {
-            name: "Rick",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/rick.png"
-        },
-        {
-            name: "Morty",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/morty.png"
-        },
-        {
-            name: "F-Society",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/fsociety.png"
-        },
-        {
-            name: "Anon",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/anon.png"
-        },
-        {
-            name: "Avatar",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/avatar.png"
-        },
-        {
-            name: "Hal 9000",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/hal_9000.png"
-        },
-        {
-            name: "Pennywise",
-            url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/pennywise.png"
-        }
-    ];
-    rettro.profile_img_icons = dummy_data;
-    rettro.profile_icon_select.show();
+    // const dummy_data = [
+    //     {
+    //         name: "Rick",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/rick.png"
+    //     },
+    //     {
+    //         name: "Morty",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/morty.png"
+    //     },
+    //     {
+    //         name: "F-Society",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/fsociety.png"
+    //     },
+    //     {
+    //         name: "Anon",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/anon.png"
+    //     },
+    //     {
+    //         name: "Avatar",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/avatar.png"
+    //     },
+    //     {
+    //         name: "Hal 9000",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/hal_9000.png"
+    //     },
+    //     {
+    //         name: "Pennywise",
+    //         url: "https://s3-us-west-2.amazonaws.com/rettro-profile-icons/pennywise.png"
+    //     }
+    // ];
+    // rettro.profile_img_icons = dummy_data;
+    // rettro.profile_icon_select.show();
 };
 
 rettro.profile_icon_select = {
     show: function () {
-        if (rettro.profile_img_icons.length > 0) {
-            $("#profile-icon-list-wrapper").css("visibility", "visible");
-
-            // Render selections
-            const select_wrapper = $("#profile-icon-list-wrapper .select-wrapper");
-            select_wrapper.html("");
-            rettro.profile_img_icons.forEach(function (el) {
-                let div = document.createElement('div');
-                div.setAttribute("class", "icon-wrapper");
-                div.innerHTML = '<img src="' + el.url + '" alt="icon"><p>' + el.name + '</p>';
-                select_wrapper.append(div);
-            });
-
-            // Apply event handlers
-            $("#profile-icon-list-wrapper .select-wrapper .icon-wrapper").click(function () {
-                rettro.handle_new_profile_icon_selected(this.childNodes[0].src);
-            });
-        }
+        // if (rettro.profile_img_icons.length > 0) {
+        //     $("#profile-icon-list-wrapper").css("visibility", "visible");
+        //
+        //     // Render selections
+        //     const select_wrapper = $("#profile-icon-list-wrapper .select-wrapper");
+        //     select_wrapper.html("");
+        //     rettro.profile_img_icons.forEach(function (el) {
+        //         let div = document.createElement('div');
+        //         div.setAttribute("class", "icon-wrapper");
+        //         div.innerHTML = '<img src="' + el.url + '" alt="icon"><p>' + el.name + '</p>';
+        //         select_wrapper.append(div);
+        //     });
+        //
+        //     // Apply event handlers
+        //     $("#profile-icon-list-wrapper .select-wrapper .icon-wrapper").click(function () {
+        //         rettro.handle_new_profile_icon_selected(this.childNodes[0].src);
+        //     });
+        // }
     },
     hide: function () {
-        $("#profile-icon-list-wrapper").css("visibility", "hidden");
+
     }
 };
 
 rettro.handle_new_profile_icon_selected = function (url) {
-    rettro.profile_icon_select.hide();
-    if (url) {
-        rettro.profile_settings.icon = url;
-        rettro_helper.flash_message("Successfully Updated Profile Icon");
-        rettro.set_profile_styles();
-    }
+    // rettro.profile_icon_select.hide();
+    // if (url) {
+    //     rettro.profile_settings.icon = url;
+    //     rettro_helper.flash_message("Successfully Updated Profile Icon");
+    //     rettro.set_profile_styles();
+    // }
 };
-
 
 rettro.handle_logout_button_tapped = function () {
-    // Go to website and log out from website
-    chrome.tabs.create({url: rettro_config.website_url});
-
-    // Tell background.js to remove token
-    chrome.runtime.sendMessage("rettro_popup_force_logout", function () {
-
-        // Reset global object
-        rettro.reset_all();
-
-        // Apply not logged in styles
-        rettro.not_logged_in();
-    });
+    console.log("logout button clicked");
 };
-
 
 rettro.handle_bg_cover_tapped = function () {
     // Hide menu
@@ -420,7 +372,7 @@ rettro.toggle_paused = function () {
         } else {
             rettro.profile_settings['last_active_date'] = moment();
         }
-        rettro.force_background_refresh();
+        //rettro.force_background_refresh();
         rettro.set_profile_styles();
         if (rettro.profile_settings.is_paused) {
             rettro_helper.flash_message("Successfully Paused Link Recordings");
@@ -431,9 +383,7 @@ rettro.toggle_paused = function () {
 };
 
 rettro.force_background_refresh = function () {
-    chrome.runtime.sendMessage("rettro_popup_force_refresh", function (response) {
-        console.log(response);
-    });
+    console.log("force bg reset");
 };
 
 rettro.update_profile_name_edit_num = function (val) {
@@ -479,7 +429,15 @@ rettro.set_profile_styles = function () {
     $('#profile-icon-menu').attr("src", icon);
 
     // Email
-    $('#account-email').text(rettro.user.email);
+    $('#account-email').text(rettro.profile_settings.email);
+};
+
+
+
+rettro.render_menu = function () {
+    $('#bg-cover').css("height", rettro.show_menu ? "100%" : "0");
+    $('#profile-menu-wrapper').css("display", rettro.show_menu ? "block" : "none");
+    rettro.set_profile_menu_title();
 };
 
 rettro.set_profile_menu_title = function () {
@@ -492,17 +450,6 @@ rettro.set_profile_menu_title = function () {
     $('#profile-menu-wrapper .body .title').html(profile_title_html);
 };
 
-rettro.render_menu = function () {
-    $('#bg-cover').css("height", rettro.show_menu ? "100%" : "0");
-    $('#profile-menu-wrapper').css("display", rettro.show_menu ? "block" : "none");
-    rettro.set_profile_menu_title();
-};
-
-rettro.not_logged_in = function () {
-    console.log("[ not_logged_in ] No token found");
-    // Display login screens
-};
-
 // --------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------
@@ -511,16 +458,6 @@ rettro.not_logged_in = function () {
 // --------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------
 $(document).ready(function () {
-    (function () {
-        // Fetch user login token from background.js
-        chrome.runtime.sendMessage("rettro_popup_token_query", function (response) {
-            if (response && response.token) {
-                rettro.token = response.token;
-                rettro.init();
-            } else {
-                // Not logged in
-                rettro.not_logged_in();
-            }
-        });
-    })();
+    rettro.token = 'this_is_not_the_real_token';
+    rettro.init();
 });

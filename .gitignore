@@ -1,11 +1,4 @@
-# Dependency directories
-node_modules/
-bower_components/
-
-# dotenv environment variables file
-.env
-
-# Mc
+# Mac
 .DS_Store
 
 # Webstorm
