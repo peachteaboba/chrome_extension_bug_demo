@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+bower_components/
+
+# dotenv environment variables file
+.env
+
+# Mc
+.DS_Store
+
+# Webstorm
+.idea/

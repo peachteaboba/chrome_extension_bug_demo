@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>popup</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/helper.css">
+    <!--<link rel="stylesheet" href="/css/login.css">-->
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/popup-body.css">
+
+    <!-- JS External -->
+    <script src="/js/packages/jquery-3.4.0.min.js"></script>
+    <script src="/js/packages/jquery.particleground.min.js"></script>
+    <script src="/js/packages/moment.min.js"></script>
+    <script src="/js/packages/anime.min.js"></script>
+
+    <!-- JS Internal -->
+    <script src="/js/config/config.js"></script>
+    <script src="/js/popup/helper.js"></script>
+    <script src="/js/popup/theme.js"></script>
+    <!--<script src="/js/popup/login.js"></script>-->
+    <script src="/js/popup/popup.js"></script>
+    <script src="/js/popup/popup-body.js"></script>
+
+</head>
+<body>
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!------------------------------- Popup Login / Reg Wrapper ------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<div id="login-bg-wrapper"></div>
+
+<!------------------------------->
+<!-- Select Profile Icon Modal -->
+<!------------------------------->
+<div id="profile-icon-list-wrapper">
+    <div class="select-wrapper"></div>
+</div>
+<!------------------------------>
+<!-- Top Message Prompt Flash -->
+<!------------------------------>
+<div id="message-wrapper">
+    <div class="content-wrapper">
+        <p></p>
+        <div class="pie-wrapper">
+            <div id='message-wrapper-countdown' class='pctTimer pctCountdown'>
+                <div class='pctPie'>
+                    <div class='pctSpinner pctSlice'></div>
+                    <div class='pctFiller pctSlice'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!--------------------------------- Profile Dropdown Menu --------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<div id="profile-menu-wrapper">
+    <div class="top-pointer"></div>
+    <div class="profile-details-wrapper">
+        <div class="body">
+            <div class="title noselect">Current Profile</div>
+            <div class="profile-img">
+                <img id="profile-icon-menu" src="/images/astronaut-helmet.svg" alt="profile icon">
+            </div>
+            <div class="text-wrapper">
+                <div class="profile-name-wrapper">
+                    <label for="profile-name-menu"></label>
+                    <input id="profile-name-menu">
+                </div>
+                <p id="profile-name-letter-count"></p>
+                <img id="profile-name-edit-icon" src="/images/icons/check-green.svg" alt="check icon">
+            </div>
+        </div>
+        <div id="profile-settings-button">
+            <img src="/images/icons/menu/dots-b.svg" alt="dots icon">
+        </div>
+    </div>
+    <!-------------------------->
+    <!-- Menu Items - Account -->
+    <!-------------------------->
+    <div class="line"><p></p></div>
+    <div class="cell-wrapper">
+        <div class="cell normal" id="account">
+            <img class="main-icon" data-src="account" data-hover="normal" src="/images/icons/menu/account-b.svg"
+                 alt="account icon">
+            <p><span id="account-email">email@email.com</span></p>
+        </div>
+    </div>
+    <div class="cell-wrapper">
+        <div class="cell normal" id="upgrade">
+            <img class="main-icon" data-src="upgrade" data-hover="normal" src="/images/icons/menu/upgrade-b.svg"
+                 alt="upgrade icon">
+            <p>Upgrade to PRO</p>
+        </div>
+    </div>
+    <!--------------------------->
+    <!-- Menu Items - Settings -->
+    <!--------------------------->
+    <div class="line"><p></p></div>
+    <div class="cell-wrapper">
+        <div class="cell normal" id="settings">
+            <img class="main-icon" data-src="settings" data-hover="normal" src="/images/icons/menu/settings-b.svg"
+                 alt="settings icon">
+            <p>Settings</p>
+        </div>
+    </div>
+    <div class="cell-wrapper">
+        <div class="cell dark-theme">
+            <img class="main-icon" data-src="moon" src="/images/icons/menu/moon-b.svg" alt="dark theme icon">
+            <p>Dark Theme</p>
+            <div class="dark-theme-toggle-wrapper">
+                <div id="dark-theme-toggle-bg">
+                    <div id="dark-theme-toggle-core">
+                        <img class="noselect" id="dark-theme-toggle-core-icon" src="/images/icons/sun.svg"
+                             alt="theme icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------->
+    <!-- Menu Items - Danger -->
+    <!------------------------->
+    <div class="line"><p></p></div>
+    <div class="cell-wrapper">
+        <div class="cell red" id="purge">
+            <img class="main-icon" data-src="purge" data-hover="red" src="/images/icons/menu/purge-b.svg"
+                 alt="purge icon">
+            <p>Delete All Saved Links</p>
+        </div>
+    </div>
+    <div class="cell-wrapper">
+        <div class="cell red" id="logout">
+            <img class="main-icon" data-src="shutdown" data-hover="red" src="/images/icons/menu/shutdown-b.svg"
+                 alt="logout icon">
+            <p>Logout</p>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------->
+<!-- Profile Dropdown Menu - Background Cover -->
+<!---------------------------------------------->
+<div id="bg-cover"></div>
+<div id="bg-cover-confirmation"></div>
+<div id="bg-cover-loading"></div>
+
+
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!---------------------------------- Popup Header Wrapper --------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<div id="header">
+    <div class="right-wrapper">
+        <div class="pause-wrapper">
+            <div id="toggle-wrapper-title"></div>
+            <div id="toggle-wrapper"></div>
+        </div>
+        <div class="menu-wrapper">
+            <div class="profile-wrapper">
+                <p id="profile-name" class="noselect">-</p>
+                <img id="profile-icon" src="/images/astronaut-helmet.svg" alt="profile icon">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------- Popup Body Wrapper ---------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------->
+<div id="body">
+    <div class="left-wrapper">
+        <div id="groups"></div> <!-- Everything in #groups is programmatically populated -->
+    </div>
+    <div class="right-wrapper">
+        <!------------------------------------------------------->
+        <!------------------------------------------------------->
+        <!--------------------- Edit Panel ---------------------->
+        <!------------------------------------------------------->
+        <!------------------------------------------------------->
+        <div id="edit-panel-wrapper">
+            <!------------------>
+            <!-- Close Button -->
+            <!------------------>
+            <div class="close">
+                <img src="/images/blank.png" alt="close icon">
+            </div>
+            <!--------------------->
+            <!-- Edit Collection -->
+            <!--------------------->
+            <div id="edit-collection">
+
+            </div>
+            <!----------------->
+            <!-- Edit Domain -->
+            <!----------------->
+            <div id="edit-domain">
+                <div class="header">
+                </div>
+                <div class="body">
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------->
+        <!------------------------------------------------------->
+        <!------------------------ Links ------------------------>
+        <!------------------------------------------------------->
+        <!------------------------------------------------------->
+        <div id="links-header">
+        </div>
+        <div id="links"></div> <!-- Everything in #links is programmatically populated -->
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+/* message wrapper */
+/* message wrapper */
+/* message wrapper */
+/* message wrapper */
+/* message wrapper */
+/* message wrapper */
+/* message wrapper */
+#message-wrapper {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    z-index: 2147483647;
+    text-align: center;
+    padding: 0 15px;
+    visibility: hidden;
+    -moz-transition: bottom 0.25s, -moz-transform ease-in-out 0.25s;
+    -webkit-transition: bottom 0.25s, -moz-transform ease-in-out 0.25s;
+    -o-transition: bottom 0.25s, -moz-transform ease-in-out 0.25s;
+    transition: bottom 0.25s, -moz-transform ease-in-out 0.25s;
+}
+
+#message-wrapper p {
+    color: white;
+    text-align: center;
+    font-size: 0.85em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#message-wrapper .content-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 20px;
+    min-height: 38px;
+    border-radius: 19px;
+    margin-bottom: 15px;
+    text-align: center;
+    -webkit-box-shadow: 0 0 15px -1px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0 0 15px -1px rgba(0,0,0,0.20);
+    box-shadow: 0 0 15px -1px rgba(0,0,0,0.20);
+}
+
+#message-wrapper .pie-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 4px;
+}
+
+#message-wrapper-countdown {
+    font-size: 14px; /* width and height of the timer, so everything depends on this value, as we use 'em' in children */
+    display: inline-block;
+}
+
+.pctTimer {
+    position: relative;
+    width: 1em;
+    height: 1em;
+}
+
+.pctPie {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em,1em,1em,0.5em); /* only show the right half of the pie */
+}
+
+.pctCountdown .pctPie {
+    clip: rect(0em,0.5em,1em,0em); /* only show the left half of the pie */
+}
+
+.pctPie.pctFull {
+    /* show the entire pie */
+    clip: rect(auto,auto,auto,auto);
+    /*outline: 3px dotted red !important;*/
+}
+
+.pctTrack,
+.pctPie .pctSlice {
+    border: 0.05em solid #eee;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+}
+
+.pctPie .pctSlice {
+    background: transparent;
+    border-color: #c0c0c0;
+    clip: rect(0em,0.5em,1em,0em); /* only take a half of the pie (left part) */
+}
+
+.pctCountdown .pctPie .pctSlice {
+    clip: rect(0em,1em,1em,0.5em); /* only take a half of the pie (right part) */
+}
+
+.pctPie .pctFiller {
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    transform:rotate(180deg);
+    display: none;
+}
+
+.pctPie.pctFull .pctFiller {
+    display: block;
+}
+
+
+/* confirmation modal */
+/* confirmation modal */
+/* confirmation modal */
+/* confirmation modal */
+/* confirmation modal */
+/* confirmation modal */
+/* confirmation modal */
+#bg-cover-confirmation {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    background: rgba(2, 4, 6, 0.85);
+    z-index: 2147483647;
+}
+
+#confirmation-box {
+    position: absolute;
+    top: 40px;
+    width: 400px;
+    left: calc(50% - 200px);
+    min-height: 20px;
+    background: white;
+    border-radius: 4px;
+    padding: 40px;
+}
+
+#confirmation-box .text-wrapper {
+    text-align: center;
+}
+
+#confirmation-box .text-wrapper p {
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+#confirmation-box .text-wrapper p span {
+    color: #EB4B46;
+}
+
+#confirmation-box .btn-wrapper {
+    text-align: center;
+    margin-top: 25px;
+}
+
+#confirmation-box .btn-wrapper p {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 25px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 0.9em;
+    margin: 0 5px;
+    border-radius: 15px;
+    height: 30px;
+
+    -moz-transition: background 0.15s, box-shadow 0.15s, -moz-transform ease-in 0.15s;
+    -webkit-transition: background 0.15s, box-shadow 0.15s, -moz-transform ease-in 0.15s;
+    -o-transition: background 0.15s, box-shadow 0.15s, -moz-transform ease-in 0.15s;
+    transition: background 0.15s, box-shadow 0.15s, -moz-transform ease-in 0.15s;
+}
+
+#confirmation-box .btn-wrapper p:hover {
+    cursor: pointer;
+}
+
+#confirmation-box .btn-wrapper .no {
+    background: #E0E5EF;
+    color: #1F1F2A;
+}
+
+#confirmation-box .btn-wrapper .no:hover {
+    background: #D8DDE9;
+}
+
+#confirmation-box .btn-wrapper .yes {
+    background: #FF625D;
+    color: white;
+}
+
+#confirmation-box .btn-wrapper .yes:hover {
+    background: #EB4B46;
+}
+
+#confirmation-box .btn-wrapper .yes.disabled {
+    opacity: 0.5;
+}
+
+#confirmation-box .btn-wrapper .yes.disabled:hover {
+    cursor: not-allowed !important;
+    background: #FF625D;
+}
+
+/*#confirmation-box .input-status {*/
+/*    width: 100%;*/
+/*    line-height: 30px;*/
+/*    font-size: 2em;*/
+/*    text-align: center;*/
+/*    margin: 25px 0 10px 0;*/
+/*    color: #D7E3ED;*/
+/*    !*font-weight: bold;*!*/
+/*}*/
+
+/*#confirmation-box .input-status span {*/
+/*    color: #00C06D;*/
+/*    opacity: 1;*/
+/*}*/
+
+/*#confirmation-box .input-status span.confirmed {*/
+/*    opacity: 1;*/
+/*}*/
+
+/*#delete-conf-input {*/
+/*    font-size: 1.2em;*/
+/*    padding: 2px 8px;*/
+/*    line-height: 36px;*/
+/*    border: 1px solid #D0DDE7;*/
+/*    width: 100%;*/
+/*    color: black;*/
+/*    border-radius: 4px;*/
+/*    background: transparent;*/
+/*    text-align: center;*/
+/*    font-weight: normal;*/
+
+/*    -moz-transition: border 0.15s, -moz-transform ease-in-out 0.15s;*/
+/*    -webkit-transition: border 0.15s, -moz-transform ease-in-out 0.15s;*/
+/*    -o-transition: border 0.15s, -moz-transform ease-in-out 0.15s;*/
+/*    transition: border 0.15s, -moz-transform ease-in-out 0.15s;*/
+/*}*/
+
+
+
+
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+/* loading screen modal */
+#bg-cover-loading {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    background: rgba(2, 4, 6, 0.85);
+    z-index: 2147483647;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end */
