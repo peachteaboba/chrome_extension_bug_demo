@@ -17,6 +17,7 @@ Step to reproduce bug
 # Videos: 
 
 Broken (External Monitors) -> https://youtu.be/20D2VKuKtJA
+
 Working (Macbook Pro's Native Monitor) -> https://youtu.be/tqj9rKMFkyo
 
 -------------------------
